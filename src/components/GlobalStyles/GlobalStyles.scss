@@ -1,6 +1,12 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;800;900&display=swap');
 
+:root {
+    --deep-blue: #07274B;
+    --light-blue: #5B96D8;
+    --white: #FFFFFF;
+}
+
 html {
     font-size: 62.5%;
 }
@@ -9,9 +15,22 @@ body {
     font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     outline: none;
     border: none;
     text-decoration: none;
+    list-style: none;
+}
+
+.rounded {
+    background-color: var(--light-blue);
+    padding: 5px 10px;
+    border: 1px solid var(--white);
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px var(--white);
 }

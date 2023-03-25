@@ -1,0 +1,15 @@
+.container {
+    background-color: var(--deep-blue);
+    height: 100vh;
+    padding: 5px 15px;
+    display: flex;
+}
+
+.sidebar {
+    min-width: 200px;
+    margin: 0 10px 0 0;
+}
+
+.content {
+    width: 100%;
+}
