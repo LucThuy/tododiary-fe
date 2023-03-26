@@ -2,9 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;800;900&display=swap');
 
 :root {
-    --deep-blue: #07274B;
-    --light-blue: #5B96D8;
-    --white: #FFFFFF;
+    --green-1: #CCD5AE;
+    --green-2: #E9EDC9;
+    --yellow-1: #FAEDCD;
+    --yellow-2: #FEFAE0;
+    --white-1: #F7F1E5;
+    --white-2: #FFFFFF;
+    --purple-1: #66347F;
 }
 
 html {
@@ -28,9 +32,9 @@ body {
 }
 
 .rounded {
-    background-color: var(--light-blue);
-    padding: 5px 10px;
-    border: 1px solid var(--white);
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px var(--white);
+    background-color: var(--green-2);
+    padding: 5px 15px;
+    border: 1px solid var(--white-1);
+    border-radius: 15px;
+    box-shadow: 0 0 0 1px var(--white-1);
 }
