@@ -1,12 +1,11 @@
 .container {
     background-color: var(--green-1);
-    height: 100vh;
+    min-height: 100vh;
     padding: 5px 15px;
     display: flex;
 }
 
 .sidebar {
-    min-width: 200px;
     margin: 50px 10px 50px 0;
 }
 
