@@ -19,6 +19,11 @@
     span {
         overflow: hidden;
         white-space: nowrap;
+        line-height: 1.6;
+    }
+
+    .switch {
+        margin-bottom: 5px;
     }
 
     .avatar {
@@ -33,6 +38,12 @@
         }
     }
 
+    .icon {
+        margin: 0 5px;
+        min-width: 18px;
+        width: 18px;
+    }
+
     .link {
         width: 100%;
         padding: 5px;
@@ -40,11 +51,6 @@
 
         + .link {
             margin-top: 10px;
-        }
-
-        &:hover {
-            border-color: var(--white-2);
-            box-shadow: 0 0 0 1px var(--white-2);
         }
 
         .link-item {
@@ -57,12 +63,6 @@
                 color: var(--purple-1);
             }
         }
-    }
-
-    .icon {
-        margin: 0 5px;
-        min-width: 18px;
-        width: 18px;
     }
 
     .section {

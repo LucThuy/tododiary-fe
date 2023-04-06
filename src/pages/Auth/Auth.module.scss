@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    width: 100%;
+
+    * {
+        color: var(--purple-1);
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 3.4rem;
+        font-weight: 900;
+    }
+
+    .button-span {
+        aspect-ratio: 1/1;
+        width: 50px;
+        position: absolute;
+        right: -25px;
+        top: 50%;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .icon {
+        font-size: 3.4rem;
+    }
+
+    .section {
+        display: flex;
+        justify-content: center;
+        width: 33.3%;
+        position: relative;
+
+        + .section {
+            border-left: 2px solid var(--white-2);
+        }
+
+        .content {
+            width: 300px;
+            margin: 30px 10px;
+            padding: 10px 20px;
+            background-color: var(--green-3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .title {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

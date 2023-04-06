@@ -23,7 +23,7 @@ function SideBar() {
                     onClick={() => {
                         setActiveSidebar(!activeSidebar);
                     }}
-                    className={cx('rounded')}
+                    className={cx('rounded', 'switch')}
                 >
                     <FontAwesomeIcon icon={faBars} className={cx('icon')} />
                 </button>
