@@ -8,6 +8,14 @@ import Auth from '~/pages/Auth';
 
 const publicRoutes = [
     {
+        path: config.routes.auth,
+        component: Auth,
+        layout: NoSidebarLayout,
+    },
+];
+
+const privateRoutes = [
+    {
         path: config.routes.todaytodo,
         component: TodayTodo,
         layout: DefaultLayout,
@@ -27,13 +35,6 @@ const publicRoutes = [
         component: SmallStore,
         layout: DefaultLayout,
     },
-    {
-        path: config.routes.auth,
-        component: Auth,
-        layout: NoSidebarLayout,
-    },
 ];
-
-const privateRoutes = [{}];
 
 export { publicRoutes, privateRoutes };

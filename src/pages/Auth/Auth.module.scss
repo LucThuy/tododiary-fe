@@ -1,4 +1,6 @@
 .container {
+    --transition-time: 0.5s;
+
     display: flex;
     width: 100%;
 
@@ -17,10 +19,9 @@
         aspect-ratio: 1/1;
         width: 50px;
         position: absolute;
-        right: -25px;
-        top: 50%;
         border-radius: 50%;
         z-index: 1;
+        transition: visibility 0.01s;
     }
 
     .icon {
@@ -30,8 +31,8 @@
     .section {
         display: flex;
         justify-content: center;
-        width: 33.3%;
         position: relative;
+        transition: width var(--transition-time) ease-out;
 
         + .section {
             border-left: 2px solid var(--white-2);
@@ -39,16 +40,135 @@
 
         .content {
             width: 300px;
+            overflow: hidden;
             margin: 30px 10px;
             padding: 10px 20px;
             background-color: var(--green-3);
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: width var(--transition-time) ease-out;
 
             .title {
                 margin-bottom: 20px;
             }
+
+            .action {
+                display: flex;
+
+                .expand {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 0;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    transition: width var(--transition-time) ease-out;
+                    transition-delay: 0;
+
+                    h2 {
+                        font-size: 2.4rem;
+                        font-weight: 500;
+                        text-align: center;
+                    }
+
+                    li {
+                        display: flex;
+                        align-items: center;
+                        margin: 20px 20px 20px 60px;
+                    }
+                }
+            }
+        }
+    }
+
+    //Section
+
+    .section-login {
+        .button-span {
+            right: -25px;
+            top: 50%;
+        }
+    }
+
+    .section-introduction {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .section-register {
+        .button-span {
+            left: -25px;
+            top: 50%;
+        }
+    }
+
+    //Mode
+
+    &.default {
+        .section-login,
+        .section-introduction {
+            width: 33.3%;
+        }
+
+        .section-register {
+            width: calc(100vw - 66.6%);
+        }
+
+        .section,
+        .content {
+            transition-delay: var(--transition-time);
+        }
+
+        .button-span {
+            visibility: visible;
+        }
+    }
+
+    &.login {
+        .section-login {
+            width: 66.6%;
+
+            .content {
+                width: 600px;
+
+                .expand {
+                    width: 250px;
+                    transition-delay: var(--transition-time);
+                }
+            }
+        }
+
+        .section-register {
+            width: calc(100vw - 66.6%);
+
+            .button-span {
+                visibility: hidden;
+                transition-delay: 0.48s;
+            }
+        }
+
+        .section-introduction {
+            width: 0;
+        }
+    }
+
+    &.register {
+        .section-login {
+            width: 33.3%;
+
+            .button-span {
+                visibility: hidden;
+                transition-delay: 0.48s;
+            }
+        }
+
+        .section-register {
+            width: calc(100vw - 33.3%);
+        }
+
+        .section-introduction {
+            width: 0;
         }
     }
 }

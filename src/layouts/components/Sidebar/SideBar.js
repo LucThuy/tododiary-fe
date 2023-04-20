@@ -13,7 +13,7 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function SideBar() {
+function Sidebar() {
     const [activeSidebar, setActiveSidebar] = useState(true);
 
     return (
@@ -80,4 +80,4 @@ function SideBar() {
     );
 }
 
-export default SideBar;
+export default Sidebar;
