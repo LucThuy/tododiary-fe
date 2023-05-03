@@ -7,10 +7,12 @@ import {
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FaGooglePlusSquare, FaFacebookSquare } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../actions';
 import { useNavigate } from 'react-router-dom';
+import PreviewImage from '../../components/PreviewImage/PreviewImage';
+
+import { loginUser, registerUser } from '../../actions';
 
 const cx = classNames.bind(styles);
 
@@ -55,9 +57,12 @@ function Auth() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isAuthenticated = useSelector((state) => state.isAuthenticated);
-    if (isAuthenticated) {
-        navigate('/todaytodo');
-    }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/todaytodo');
+        }
+    }, [isAuthenticated, navigate]);
 
     const [loginState, setLoginState] = useState({
         username: '',
@@ -76,6 +81,33 @@ function Auth() {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         dispatch(loginUser(loginState));
+    };
+
+    const [registerState, setRegisterState] = useState({
+        name: '',
+        username: '',
+        password: '',
+    });
+
+    const [avatarState, setAvatarState] = useState();
+
+    const handleRegisterChange = (e) => {
+        const { name, value } = e.target;
+
+        setRegisterState((prevRegisterState) => ({
+            ...prevRegisterState,
+            [name]: value,
+        }));
+    };
+
+    const handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        const registerData = new FormData();
+        for (const key in registerState) {
+            registerData.append(key, registerState[key]);
+        }
+        registerData.append('avatar', avatarState);
+        dispatch(registerUser(registerData));
     };
 
     return (
@@ -171,6 +203,7 @@ function Auth() {
                     )}
                 </button>
             </div>
+
             <div className={cx('section', 'section-introduction')}>
                 <div className={cx('content')}>
                     <div className={cx('title')}>
@@ -178,10 +211,95 @@ function Auth() {
                     </div>
                 </div>
             </div>
+
             <div className={cx('section', 'section-register')}>
-                <div className={cx('content')}>
+                <div className={cx('content', 'rounded')}>
                     <div className={cx('title')}>
                         <h2>Register</h2>
+                    </div>
+                    <div className={cx('action')}>
+                        <div className={cx('expand')}>
+                            <PreviewImage setImageState={setAvatarState} />
+                            <div className={cx('other-link')}>
+                                <h2>Or register with</h2>
+                                <ul>
+                                    <li>
+                                        <FaGooglePlusSquare
+                                            className={cx('icon')}
+                                        />
+                                        <span>Google</span>
+                                    </li>
+                                    <li>
+                                        <FaFacebookSquare
+                                            className={cx('icon')}
+                                        />
+                                        <span>Facebook</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form onSubmit={handleRegisterSubmit}>
+                            <div className={cx('input-field')}>
+                                <label htmlFor="register-name">Name</label>
+                                <input
+                                    onFocus={() => {
+                                        setMode('register');
+                                    }}
+                                    type="text"
+                                    className={cx('rounded')}
+                                    id="register-name"
+                                    placeholder="Name"
+                                    name="name"
+                                    value={registerState.name}
+                                    onChange={handleRegisterChange}
+                                    required
+                                />
+                            </div>
+                            <div className={cx('input-field')}>
+                                <label htmlFor="register-username">
+                                    Username
+                                </label>
+                                <input
+                                    onFocus={() => {
+                                        setMode('register');
+                                    }}
+                                    type="text"
+                                    className={cx('rounded')}
+                                    id="register-username"
+                                    placeholder="Username"
+                                    name="username"
+                                    value={registerState.username}
+                                    onChange={handleRegisterChange}
+                                    required
+                                />
+                            </div>
+                            <div className={cx('input-field')}>
+                                <label htmlFor="regsiter-password">
+                                    Password
+                                </label>
+                                <input
+                                    onFocus={() => {
+                                        setMode('register');
+                                    }}
+                                    type="password"
+                                    className={cx('rounded')}
+                                    id="register-password"
+                                    placeholder="Password"
+                                    name="password"
+                                    value={registerState.password}
+                                    onChange={handleRegisterChange}
+                                    required
+                                />
+                            </div>
+                            <input
+                                onFocus={() => {
+                                    setMode('register');
+                                }}
+                                type="submit"
+                                value="Register"
+                                className={cx('submit', 'rounded')}
+                            />
+                        </form>
                     </div>
                 </div>
                 <button

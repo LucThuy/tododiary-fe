@@ -21,7 +21,9 @@
         position: absolute;
         border-radius: 50%;
         z-index: 1;
+        visibility: visible;
         transition: visibility 0.01s;
+        transition-delay: var(--transition-time);
     }
 
     .icon {
@@ -51,6 +53,12 @@
 
             .title {
                 margin-bottom: 20px;
+
+                h2 {
+                    text-shadow: none;
+                    transition: text-shadow 0.3s ease-out;
+                    transition-delay: 0;
+                }
             }
 
             .action {
@@ -75,7 +83,7 @@
                     li {
                         display: flex;
                         align-items: center;
-                        margin: 20px 20px 20px 60px;
+                        margin: 10px 20px 10px 60px;
                     }
                 }
             }
@@ -119,10 +127,6 @@
         .content {
             transition-delay: var(--transition-time);
         }
-
-        .button-span {
-            visibility: visible;
-        }
     }
 
     &.login {
@@ -131,6 +135,15 @@
 
             .content {
                 width: 600px;
+
+                .title {
+                    h2 {
+                        text-shadow: 1px 0 3px var(--white-2),
+                            0 1px 3px var(--white-2), -1px 0 3px var(--white-2),
+                            0 -1px 3px var(--white-2);
+                        transition-delay: var(--transition-time);
+                    }
+                }
 
                 .expand {
                     width: 250px;
@@ -144,7 +157,6 @@
 
             .button-span {
                 visibility: hidden;
-                transition-delay: 0.48s;
             }
         }
 
@@ -159,12 +171,29 @@
 
             .button-span {
                 visibility: hidden;
-                transition-delay: 0.48s;
             }
         }
 
         .section-register {
             width: calc(100vw - 33.3%);
+
+            .content {
+                width: 600px;
+
+                .title {
+                    h2 {
+                        text-shadow: 1px 0 3px var(--white-2),
+                            0 1px 3px var(--white-2), -1px 0 3px var(--white-2),
+                            0 -1px 3px var(--white-2);
+                        transition-delay: var(--transition-time);
+                    }
+                }
+
+                .expand {
+                    width: 250px;
+                    transition-delay: var(--transition-time);
+                }
+            }
         }
 
         .section-introduction {

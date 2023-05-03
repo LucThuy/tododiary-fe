@@ -5,6 +5,9 @@ import DiaryHistory from '~/pages/DiaryHistory';
 import Profile from '~/pages/Profile';
 import SmallStore from '~/pages/SmallStore';
 import Auth from '~/pages/Auth';
+import NotFoundError from '../pages/NotFoundError/NotFoundError';
+
+const NotFoundRoute = NotFoundError;
 
 const publicRoutes = [
     {
@@ -37,4 +40,4 @@ const privateRoutes = [
     },
 ];
 
-export { publicRoutes, privateRoutes };
+export { publicRoutes, privateRoutes, NotFoundRoute };

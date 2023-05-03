@@ -11,7 +11,10 @@
     --white-2: #ffffff;
     --white-2-opacity-1: #ffffff88;
     --white-2-opacity-2: #ffffffcc;
+    --white-3: #fefbe9;
     --purple-1: #66347f;
+    --purple-2: #c3acd0;
+    --red-1: #ea5455;
 }
 
 html {
@@ -34,12 +37,20 @@ body {
     list-style: none;
 }
 
+button {
+    font-family: 'Nunito', sans-serif;
+}
+
 .rounded {
     background-color: var(--green-2);
     padding: 5px;
-    border: 1px solid var(--white-1);
     border-radius: 10px;
+    border: 1px solid var(--white-1);
     box-shadow: 0 0 0 1px var(--white-2-opacity-2);
+
+    + .rounded {
+        margin-top: 10px;
+    }
 
     &:hover {
         border-color: var(--white-2);

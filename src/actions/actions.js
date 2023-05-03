@@ -1,6 +1,11 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import { LOGIN_SUCCESS, LOGIN_FAILURE } from './types';
+import {
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+} from './types';
 
 const loginSuccess = (token) => {
     return {
@@ -11,9 +16,12 @@ const loginSuccess = (token) => {
     };
 };
 
-const loginFailure = () => {
+const loginFail = (err) => {
     return {
-        type: LOGIN_FAILURE,
+        type: LOGIN_FAIL,
+        payload: {
+            err,
+        },
     };
 };
 
@@ -26,8 +34,49 @@ const loginUser = (userData) => (dispatch) => {
             dispatch(loginSuccess(decoded));
         })
         .catch((err) => {
-            dispatch(loginFailure());
+            dispatch(loginFail(err.response.data));
         });
 };
 
-export { loginUser, loginSuccess, loginFailure };
+const registerSuccess = (token) => {
+    return {
+        type: REGISTER_SUCCESS,
+        payload: {
+            token,
+            isRegisterSuccess: true,
+        },
+    };
+};
+
+const registerFail = (err) => {
+    return {
+        type: REGISTER_FAIL,
+        payload: {
+            err,
+        },
+    };
+};
+
+const registerUser = (userData) => (dispatch) => {
+    axios
+        .post('http://localhost:8080/api/auth/register', userData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        })
+        .then((res) => {
+            const token = res.data.accessToken;
+            const decoded = jwt_decode(token);
+            dispatch(registerSuccess(decoded));
+        })
+        .catch((err) => {
+            dispatch(registerFail(err.response.data));
+        });
+};
+
+export {
+    loginUser,
+    loginSuccess,
+    loginFail,
+    registerUser,
+    registerSuccess,
+    registerFail,
+};
