@@ -31,7 +31,7 @@ const loginUser = (userData) => (dispatch) => {
         .then((res) => {
             const token = res.data.accessToken;
             const decoded = jwt_decode(token);
-            dispatch(loginSuccess(decoded));
+            dispatch(loginSuccess(token));
         })
         .catch((err) => {
             dispatch(loginFail(err.response.data));
@@ -65,7 +65,7 @@ const registerUser = (userData) => (dispatch) => {
         .then((res) => {
             const token = res.data.accessToken;
             const decoded = jwt_decode(token);
-            dispatch(registerSuccess(decoded));
+            dispatch(registerSuccess(token));
         })
         .catch((err) => {
             dispatch(registerFail(err.response.data));

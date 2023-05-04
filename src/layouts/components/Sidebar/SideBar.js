@@ -9,12 +9,32 @@ import {
     faUser,
     faStore,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
     const [activeSidebar, setActiveSidebar] = useState(true);
+
+    const [userName, setUserName] = useState('guest');
+    const [userAvatar, setUserAvatar] = useState(
+        process.env.PUBLIC_URL + '/default-avatar.png'
+    );
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios
+            .get('http://localhost:8080/api/main/user', {
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                },
+            })
+            .then((res) => {
+                setUserName(res.data.name);
+                setUserAvatar('http://localhost:8080/' + res.data.avatar);
+            });
+    }, []);
 
     return (
         <div className={cx('container', 'rounded', { active: activeSidebar })}>
@@ -27,14 +47,21 @@ function Sidebar() {
                 >
                     <FontAwesomeIcon icon={faBars} className={cx('icon')} />
                 </button>
-                <Link to="/profile">
+                <Link to="/profile" className={cx('user-detail')}>
                     <img
-                        src="https://cdn.lazi.vn/storage/uploads/users/cover/548014_1614328231.jpg"
+                        src={userAvatar}
                         alt="avatar"
-                        className={cx('avatar', 'rounded', {
+                        className={cx('user-avatar', 'rounded', {
                             active: activeSidebar,
                         })}
                     />
+                    <span
+                        className={cx('user-name', {
+                            active: activeSidebar,
+                        })}
+                    >
+                        {userName}
+                    </span>
                 </Link>
                 <div className={cx('rounded', 'link')}>
                     <Link to="/profile" className={cx('link-item')}>
