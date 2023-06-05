@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL } from '~/actions/types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, CLEAR_LOGIN_ERR } from '~/actions/types';
 import { REGISTER_SUCCESS } from '../actions/types';
 
 const initialState = {
@@ -17,7 +17,16 @@ const authReducer = (state = initialState, action) => {
             };
         }
         case LOGIN_FAIL: {
-            return state;
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
+        case CLEAR_LOGIN_ERR: {
+            return {
+                ...state,
+                err: null,
+            };
         }
         case REGISTER_SUCCESS: {
             localStorage.setItem('token', JSON.stringify(action.payload.token));

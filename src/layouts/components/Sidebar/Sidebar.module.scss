@@ -1,10 +1,12 @@
 .container {
     min-height: 100%;
     width: 50px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: width ease-out 0.5s;
+    background-color: var(--g-1) !important;
 
     * {
         color: var(--purple-1);
@@ -23,8 +25,22 @@
         text-align: center;
     }
 
-    .switch {
+    .btn-switch {
+        padding: 0;
+        border-radius: 10px;
+        line-height: 0;
         margin-bottom: 5px;
+
+        .switch {
+            font-size: 3rem;
+            margin: 0;
+            width: 24px;
+            height: 24px;
+
+            * {
+                color: var(--g-4);
+            }
+        }
     }
 
     .user-detail {
@@ -74,7 +90,7 @@
     .link {
         width: 100%;
         padding: 5px;
-        background-color: var(--yellow-2);
+        background-color: var(--g-4);
 
         + .link {
             margin-top: 10px;

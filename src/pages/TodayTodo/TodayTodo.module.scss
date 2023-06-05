@@ -1,0 +1,30 @@
+.container {
+    min-height: 100%;
+    position: relative;
+    background-color: var(--green-4) !important;
+
+    .todo-item {
+        position: absolute;
+        width: 0;
+        height: 0;
+    }
+
+    .btn {
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .add-todo {
+        position: absolute;
+        bottom: 10px;
+        left: 15px;
+        line-height: 0;
+
+        .add-todo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding-left: 7px;
+        }
+    }
+}

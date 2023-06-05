@@ -5,6 +5,7 @@ import DiaryHistory from '~/pages/DiaryHistory';
 import Profile from '~/pages/Profile';
 import SmallStore from '~/pages/SmallStore';
 import Auth from '~/pages/Auth';
+import OAuth2Redirect from '../pages/OAuth2/OAuth2Redirect';
 import NotFoundError from '../pages/NotFoundError/NotFoundError';
 
 const NotFoundRoute = NotFoundError;
@@ -13,6 +14,11 @@ const publicRoutes = [
     {
         path: config.routes.auth,
         component: Auth,
+        layout: NoSidebarLayout,
+    },
+    {
+        path: config.routes.oauth2redirect,
+        component: OAuth2Redirect,
         layout: NoSidebarLayout,
     },
 ];

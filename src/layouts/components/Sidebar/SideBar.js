@@ -19,7 +19,7 @@ function Sidebar() {
 
     const [userName, setUserName] = useState('guest');
     const [userAvatar, setUserAvatar] = useState(
-        process.env.PUBLIC_URL + '/default-avatar.png'
+        require('~/assets/images/default-avatar.png')
     );
 
     useEffect(() => {
@@ -32,20 +32,27 @@ function Sidebar() {
             })
             .then((res) => {
                 setUserName(res.data.name);
-                setUserAvatar('http://localhost:8080/' + res.data.avatar);
+                setUserAvatar(res.data.avatar);
             });
     }, []);
 
     return (
-        <div className={cx('container', 'rounded', { active: activeSidebar })}>
+        <div
+            className={cx('container', 'container-content', {
+                active: activeSidebar,
+            })}
+        >
             <div className={cx('section')}>
                 <button
                     onClick={() => {
                         setActiveSidebar(!activeSidebar);
                     }}
-                    className={cx('rounded', 'switch')}
+                    className={cx('btn-switch')}
                 >
-                    <FontAwesomeIcon icon={faBars} className={cx('icon')} />
+                    <FontAwesomeIcon
+                        icon={faBars}
+                        className={cx('icon', 'rounded', 'switch', 'btn-icon')}
+                    />
                 </button>
                 <Link to="/profile" className={cx('user-detail')}>
                     <img

@@ -1,20 +1,42 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
 
 :root {
     --green-1: #ccd5ae;
     --green-2: #e9edc9;
     --green-3: #bbd6b8;
+    --green-4: #698269;
     --yellow-1: #faedcd;
     --yellow-2: #fefae0;
     --white-1: #f7f1e5;
     --white-2: #ffffff;
+    --white-3: #fffbf5;
     --white-2-opacity-1: #ffffff88;
     --white-2-opacity-2: #ffffffcc;
     --white-3: #fefbe9;
     --purple-1: #66347f;
+    --purple-1-opacity-1: #66347fdd;
     --purple-2: #c3acd0;
     --red-1: #ea5455;
+    --black-1: #000000;
+    --black-1-opacity-1: #000000aa;
+    --black-1-opacity-2: #00000044;
+    --gray-1: #888888;
+
+    --g-1: #aac8a7;
+    --g-2: #c9dbb2;
+    --g-3: #e3f2c1;
+    --g-4: #f6ffde;
+    --g2-1: #7c9070;
+    --g2-1-o-1: #7c9070aa;
+    --g2-2: #9ca777;
+    --p-1: #66347f;
+    --p-1-o-1: #66347fdd;
+    --p-2: #917fb3;
+    --p-3: #e5beec;
+    --p-4: #fde2f3;
 }
 
 html {
@@ -37,12 +59,27 @@ body {
     list-style: none;
 }
 
-button {
+button,
+input {
     font-family: 'Nunito', sans-serif;
 }
 
+select {
+    border: solid 1px var(--black-1-opacity-2);
+    border-radius: 2px;
+}
+
+input[type='checkbox'] {
+    accent-color: var(--p-1-o-1);
+    width: 16px;
+
+    &:hover {
+        accent-color: var(--p-1);
+    }
+}
+
 .rounded {
-    background-color: var(--green-2);
+    background-color: var(--g-2);
     padding: 5px;
     border-radius: 10px;
     border: 1px solid var(--white-1);
@@ -59,10 +96,17 @@ button {
 }
 
 .container-layout {
-    background-color: var(--green-1);
+    background-color: var(--g-4);
     min-height: 100vh;
     padding: 5px 15px;
     display: flex;
+}
+
+.container-content {
+    border-radius: 4px;
+    border: 1px solid var(--white-1);
+    box-shadow: 0 0 5px 1px var(--g2-1-o-1);
+    background-color: var(--g-1);
 }
 
 form {
@@ -87,7 +131,7 @@ form {
             width: 100%;
             padding: 6px 7px 6px 5px;
             border-radius: 5px;
-            background-color: var(--white-2-opacity-1);
+            background-color: var(--white-2-opacity-2);
             transition: background-color 0.5s ease-out;
 
             &:valid {
@@ -102,7 +146,17 @@ form {
 
     .submit {
         width: 100px;
+        font-size: 1.8rem;
         margin-top: 20px;
-        background-color: var(--yellow-2);
+    }
+}
+
+.btn-icon {
+    background-color: var(--p-1-o-1);
+    color: var(--g-4);
+    transition: background-color 0.2s ease-out;
+
+    &:hover {
+        background-color: var(--p-1);
     }
 }

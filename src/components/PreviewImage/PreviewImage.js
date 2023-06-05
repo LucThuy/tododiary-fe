@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 function PreviewImage({ setImageState }) {
     const [image, setImage] = useState(
-        process.env.PUBLIC_URL + '/default-avatar.png'
+        require('~/assets/images/default-avatar.png')
     );
 
     const onSelectImage = async (e) => {

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PreviewImage from '../../components/PreviewImage/PreviewImage';
 
-import { loginUser, registerUser } from '../../actions';
+import { loginUser, clearLoginErr, registerUser } from '../../actions';
 
 const cx = classNames.bind(styles);
 
@@ -57,12 +57,17 @@ function Auth() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const isAuthenticated = useSelector((state) => state.isAuthenticated);
+    const err = useSelector((state) => state.err);
 
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/todaytodo');
         }
     }, [isAuthenticated, navigate]);
+
+    useEffect(() => {
+        dispatch(clearLoginErr());
+    }, [dispatch]);
 
     const [loginState, setLoginState] = useState({
         username: '',
@@ -76,6 +81,8 @@ function Auth() {
             ...prevLoginState,
             [name]: value,
         }));
+
+        dispatch(clearLoginErr());
     };
 
     const handleLoginSubmit = (e) => {
@@ -112,7 +119,7 @@ function Auth() {
 
     return (
         <div
-            className={cx('container', 'rounded', {
+            className={cx('container', 'container-content', {
                 default: modeDefault,
                 login: modeLogin,
                 register: modeRegister,
@@ -158,13 +165,18 @@ function Auth() {
                                     required
                                 />
                             </div>
+                            {err && (
+                                <p className={cx('error')}>
+                                    Account is not exist
+                                </p>
+                            )}
                             <input
                                 onFocus={() => {
                                     setMode('login');
                                 }}
                                 type="submit"
                                 value="Login"
-                                className={cx('submit', 'rounded')}
+                                className={cx('submit', 'rounded', 'btn-icon')}
                             />
                         </form>
                         <div className={cx('expand')}>
@@ -224,10 +236,12 @@ function Auth() {
                                 <h2>Or register with</h2>
                                 <ul>
                                     <li>
-                                        <FaGooglePlusSquare
-                                            className={cx('icon')}
-                                        />
-                                        <span>Google</span>
+                                        <a href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect">
+                                            <FaGooglePlusSquare
+                                                className={cx('icon')}
+                                            />
+                                            <span>Google</span>
+                                        </a>
                                     </li>
                                     <li>
                                         <FaFacebookSquare
@@ -274,7 +288,7 @@ function Auth() {
                                 />
                             </div>
                             <div className={cx('input-field')}>
-                                <label htmlFor="regsiter-password">
+                                <label htmlFor="register-password">
                                     Password
                                 </label>
                                 <input
@@ -297,7 +311,7 @@ function Auth() {
                                 }}
                                 type="submit"
                                 value="Register"
-                                className={cx('submit', 'rounded')}
+                                className={cx('submit', 'rounded', 'btn-icon')}
                             />
                         </form>
                     </div>

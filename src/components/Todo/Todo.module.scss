@@ -1,0 +1,223 @@
+.container {
+    background: var(--white-1);
+    width: 250px;
+    height: 300px;
+    padding: 20px 10px 10px 8px;
+    display: inline-block;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 1px 3px 5px 1px var(--black-1-opacity-2);
+    z-index: 1;
+    transition: box-shadow 0.3s ease-out;
+
+    &:hover {
+        box-shadow: 0 0 3px 1px var(--white-2);
+        z-index: 1000;
+    }
+
+    &.small {
+        width: 150px;
+        height: 200px;
+
+        &.landscape {
+            width: 200px;
+            height: 150px;
+        }
+    }
+
+    &.medium {
+        width: 250px;
+        height: 300px;
+
+        &.landscape {
+            width: 300px;
+            height: 250px;
+        }
+    }
+
+    &.big {
+        width: 350px;
+        height: 400px;
+
+        &.landscape {
+            width: 400px;
+            height: 350px;
+        }
+    }
+
+    &.edit {
+        box-shadow: 0 0 3px 1px var(--white-2),
+            0 0 5px 5px var(--white-2-opacity-1);
+        z-index: 2000;
+
+        .pin:hover {
+            cursor: not-allowed;
+        }
+
+        .content {
+            .title {
+                background-color: transparent;
+                display: block;
+                width: 100%;
+                font-weight: 500;
+                font-size: 1.5em;
+                font-weight: 900;
+                font-family: 'Mynerve', cursive;
+                padding-top: 4px;
+            }
+
+            .note textarea {
+                background-color: transparent;
+                display: block;
+                width: 100%;
+                height: 70%;
+                line-height: 1.6;
+                font-size: 1.4rem;
+                font-family: 'Mynerve', cursive;
+                resize: none;
+                overflow: hidden;
+            }
+        }
+
+        .setting {
+            height: 100px;
+            box-shadow: 0 0 3px 1px var(--white-2);
+            visibility: visible;
+        }
+    }
+
+    &.landscape {
+        .wrapper {
+            flex-direction: row;
+        }
+    }
+
+    .setting {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: -150px;
+        width: 130px;
+        height: 0;
+        padding: 5px 10px;
+        background: var(--white-1);
+        border-radius: 2px;
+        box-shadow: none;
+        z-index: 0;
+        transition: box-shadow 0.3s ease-out, height 0.3s ease-out,
+            visibility 0.25s ease-out;
+        overflow: hidden;
+        visibility: hidden;
+
+        &.settingPos {
+            left: -150px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+
+            + .setting-item {
+                margin-top: 5px;
+            }
+
+            label {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .pin {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -30%);
+        height: 40px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .btn {
+        border-radius: 50%;
+        cursor: pointer;
+
+        .icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        .icon-s {
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+    .update-todo,
+    .confirm-update-todo,
+    .cancel-update-todo {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .cancel-update-todo {
+        right: 40px;
+    }
+
+    .content {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        // font-family: 'Pangolin', cursive;
+        font-family: 'Mynerve', cursive;
+
+        .title {
+            text-align: center;
+            border-bottom: 1px solid var(--black-1-opacity-1);
+            height: 32px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 90%;
+
+            .detail {
+                border-bottom: 1px solid var(--black-1-opacity-1);
+                font-size: 1.4rem;
+                height: 60%;
+                position: relative;
+
+                .add-task {
+                    position: absolute;
+                    right: 2px;
+                    top: 2px;
+                }
+            }
+
+            .note {
+                font-size: 1.4rem;
+                height: 40%;
+                overflow: hidden;
+                line-height: 1.6;
+            }
+        }
+
+        h4 {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.ani-container {
+    display: inline-block;
+    position: absolute;
+}

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    CLEAR_LOGIN_ERR,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
 } from './types';
@@ -30,12 +31,18 @@ const loginUser = (userData) => (dispatch) => {
         .post('http://localhost:8080/api/auth/login', userData)
         .then((res) => {
             const token = res.data.accessToken;
-            const decoded = jwt_decode(token);
+            // const decoded = jwt_decode(token);
             dispatch(loginSuccess(token));
         })
         .catch((err) => {
             dispatch(loginFail(err.response.data));
         });
+};
+
+const clearLoginErr = () => {
+    return {
+        type: CLEAR_LOGIN_ERR,
+    };
 };
 
 const registerSuccess = (token) => {
@@ -64,7 +71,7 @@ const registerUser = (userData) => (dispatch) => {
         })
         .then((res) => {
             const token = res.data.accessToken;
-            const decoded = jwt_decode(token);
+            // const decoded = jwt_decode(token);
             dispatch(registerSuccess(token));
         })
         .catch((err) => {
@@ -76,6 +83,7 @@ export {
     loginUser,
     loginSuccess,
     loginFail,
+    clearLoginErr,
     registerUser,
     registerSuccess,
     registerFail,
